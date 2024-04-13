@@ -1,0 +1,6 @@
+#migrate create -ext sql -dir ./migrations -seq create_users_table
+#gormt -H=127.0.0.1 -d=study_room -p=123456 -u=root --port=3306 -F=false -o=./migrations
+
+protoc   --doc_out=./doc --doc_opt=html,index.html -I ./;./third_party ./api/service/v1/*.proto
+
+gocyclo

@@ -1,0 +1,401 @@
+syntax = "proto3";
+
+package api.course.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/course/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.course.v1";
+
+service Course {
+  rpc Get(GetRequest) returns (DataReply) {
+    option (google.api.http) = {
+      get : "/course/v1/course/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description : "根据id获取";
+  summary:
+    "获取课程";
+  };
+};
+rpc Find(FindRequest) returns (DataReply) {
+  option (google.api.http) = {
+    get : "/course/v1/find"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "根据字段-值获取";
+summary:
+  "自定义获取课程";
+};
+}
+;
+rpc List(ListRequest) returns (ListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/list"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "获取全部";
+summary:
+  "获取课程列表";
+};
+}
+;
+rpc Search(SearchRequest) returns (ListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/search"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "根据字段搜索";
+summary:
+  "搜索课程列表";
+};
+}
+;
+
+rpc MyStudentList(MyStudentRequest) returns (MyStudentDataListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/my_student"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "我的学生列表";
+};
+}
+;
+rpc MyStudentInfo(MyStudentRequest) returns (MyStudentDataReply) {
+  option (google.api.http) = {
+    get : "/course/v1/my_student_info"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "我的学生";
+};
+}
+;
+rpc CreateMyStudent(MyStudentRequest) returns (MyStudentDataReply) {
+  option (google.api.http) = {
+    post : "/course/v1/my_student";
+body:
+  "*"
+};
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+  description : "";
+summary : "创建学生信息";
+}
+;
+}
+;
+rpc UpdateMyStudent(MyStudentRequest) returns (MyStudentDataReply) {
+  option (google.api.http) = {
+    put : "/course/v1/my_student";
+body:
+  "*"
+};
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+  description : "";
+summary : "更新学生信息";
+}
+;
+}
+;
+rpc MyStudentCourse(MyCourseRequest) returns (MyStudentCourseDataListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/my_student_course"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "我的学生课程列表";
+};
+}
+;
+rpc MyCourseScheduling(MyCourseRequest)
+    returns (MyCourseSchedulingDataListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/my_course_scheduling"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "我的排课列表";
+};
+}
+;
+rpc TeacherCourseScheduling(MyCourseRequest)
+    returns (MyCourseSchedulingDataListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/teacher_course_scheduling"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "老师的排课列表";
+};
+}
+;
+rpc TeacherCourseSchedulingCheckIn(CourseSchedulingCheckInRequest)
+    returns (CheckInReply) {
+  option (google.api.http) = {
+    post : "/course/v1/teacher_course_scheduling_check_in"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "老师的排课_签到";
+};
+}
+;
+
+rpc TeacherClassScheduling(MyCourseRequest)
+    returns (MyClassSchedulingDataListReply) {
+  option (google.api.http) = {
+    get : "/course/v1/teacher_class_scheduling"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "老师的班_排课列表";
+};
+}
+;
+rpc TeacherClassSchedulingCheckIn(ClassSchedulingCheckInRequest)
+    returns (CheckInReply) {
+  option (google.api.http) = {
+    post : "/course/v1/teacher_class_scheduling_check_in"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "老师的班_签到";
+};
+}
+;
+}
+
+message GetRequest { int64 id = 1; }
+
+message FindRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message ListRequest {}
+
+message SearchRequest {
+  string useShop = 1
+      [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description : "shopId|0|",
+        example : "shopId|0|",
+        default : "shopId|0|"
+      } ];
+  int32 teachingType = 2;
+  int32 courseType = 3;
+  int32 status = 6;
+  int32 sort = 7;
+}
+
+message DataReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+message ListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated Data data = 3;
+}
+
+message Data {
+  int64 id = 1;
+  int32 teachingType = 2;
+  int32 courseType = 3;
+  int32 buyLimit = 4;
+  int32 courseSize = 5;
+  string title = 6;
+  string cover = 7;
+  string carousel = 8;
+  string summary = 9;
+  string content = 10;
+  string startDate = 11;
+  string endDate = 12;
+  int32 status = 13;
+  string useShop = 14;
+  int32 sort = 15;
+  string remark = 16;
+  repeated Sale sale = 18;
+}
+
+message Sale {
+  int64 id = 1;
+  string useShop = 2;
+  int32 status = 3;
+  int32 type = 4;
+  string rule = 5;
+  float price = 6;
+  float oriPrice = 7;
+  int32 buyLimit = 8;
+  string startDate = 9;
+  string endDate = 10;
+  int32 validDay = 11;
+  int32 activeLimit = 12;
+  int32 sort = 13;
+  string remark = 14;
+}
+
+message MyStudentRequest {
+  int64 id = 1;
+  int64 studentId = 2;
+  string photo = 3;
+  string name = 4;
+  string phone = 5;
+  int32 gender = 6;
+}
+message MyStudentDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MyStudentData data = 3;
+}
+message MyStudentDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyStudentData data = 3;
+}
+
+message MyStudentData {
+  int64 id = 1;
+  int64 studentId = 2;
+  string name = 3;
+  string phone = 4;
+  int32 gender = 5;
+  string photo = 6;
+}
+
+message MyStudentCourseDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyStudentCourseData data = 3;
+}
+
+message MyStudentCourseData {
+  int64 id = 1;
+  string title = 2;
+  int64 studentId = 3;
+  string studentName = 4;
+  float actualAmount = 5;
+  int32 remain = 6;
+  int32 perMin = 7;
+  int32 status = 8;
+  int64 courseId = 9;
+  int32 courseType = 10;
+  int32 teachingType = 11;
+  int32 courseSize = 12;
+  string startDate = 13;
+  string endDate = 14;
+  float price = 15;
+  float oriPrice = 16;
+  string remark = 17;
+  int32 validDay = 18;
+  int32 activeLimit = 19;
+  string activeAt = 20;
+  string invalidAt = 21;
+}
+message MyCourseRequest {
+  int64 id = 1;
+  int64 studentId = 2;
+  int64 courseId = 3;
+  string status = 4;
+
+  int32 sort = 5;
+  int32 page = 6;
+  int32 pageSize = 7;
+}
+
+message MyCourseSchedulingDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MyCourseSchedulingData data = 3;
+}
+
+message MyCourseSchedulingDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyCourseSchedulingData data = 3;
+}
+
+message MyCourseSchedulingData {
+  int64 id = 1;
+  int64 studentId = 3;
+  string studentName = 4;
+  int64 studentCourseId = 5;
+  string courseName = 6;
+  int32 courseType = 7;
+  int32 teachingType = 8;
+  int64 classId = 9;
+  string className = 10;
+  int64 teacherId = 11;
+  string teacherName = 12;
+  string startDate = 13;
+  string endDate = 14;
+  string startTime = 15;
+  string endTime = 16;
+  int32 status = 17;
+  int32 checkIn = 18;
+  int64 addressId = 19;
+  string addressName = 20;
+}
+
+message CourseSchedulingCheckInRequest {
+  int64 id = 1;
+  int32 checkIn = 2;
+  int32 status = 3;
+}
+message ClassSchedulingCheckInRequest {
+  int64 id = 1;
+  int32 status = 2;
+  repeated CourseSchedulingCheckInRequest course = 3;
+}
+
+message MyClassSchedulingDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyClassSchedulingData data = 3;
+}
+message MyClassSchedulingDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MyClassSchedulingData data = 3;
+}
+message MyClassSchedulingData {
+  int64 id = 1;
+  string courseName = 6;
+  int32 courseType = 7;
+  int32 teachingType = 8;
+  int64 classId = 9;
+  string className = 10;
+  int64 teacherId = 11;
+  string teacherName = 12;
+  string startDate = 13;
+  string endDate = 14;
+  string startTime = 15;
+  string endTime = 16;
+  int32 status = 17;
+  int64 addressId = 19;
+  string addressName = 20;
+  repeated CourseSchedulingCheckIn course = 21;
+
+  message CourseSchedulingCheckIn {
+    int64 id = 1;
+    int32 checkIn = 2;
+    string studentName = 3;
+  }
+}
+
+message CheckInReply {
+  int32 code = 1;
+  string msg = 2;
+}

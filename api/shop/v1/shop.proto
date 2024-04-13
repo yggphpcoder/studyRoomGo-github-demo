@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+package api.shop.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "seat/v1/seat.proto" ;
+
+option go_package = "studyRoomGo/api/shop/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.shop.v1";
+
+service Shop {
+  rpc Create (CreateRequest) returns (CreateReply);
+  rpc Update (UpdateRequest) returns (UpdateReply);
+  rpc Delete (DeleteRequest) returns (DeleteReply);
+  rpc Get (GetRequest) returns (DataReply){
+    option (google.api.http) = {
+      get: "/shop/v1/shop/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据id获取";
+      summary: "获取门店";
+    };
+  };
+  rpc Find (FindRequest) returns (DataReply){
+    option (google.api.http) = {
+      get: "/shop/v1/find"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段-值获取";
+      summary: "自定义获取门店";
+    };
+  };
+  rpc Search (SearchRequest) returns (ListReply){
+    option (google.api.http) = {
+      get: "/shop/v1/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段搜索";
+      summary: "搜索门店列表";
+    };
+  };
+  rpc uploadQrCode (UploadQrCodeRequest) returns (QrCodeReply){
+    option (google.api.http) = {
+      post: "/shop/v1/upload_qrcode",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "";
+      summary: "上传进闸二维码";
+    };
+  };
+}
+
+message CreateRequest {}
+message CreateReply {}
+
+message UpdateRequest {}
+message UpdateReply {}
+
+message DeleteRequest {}
+message DeleteReply {}
+
+message GetRequest {
+  int64 id = 1;
+}
+
+message FindRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message ListRequest {}
+
+
+message SearchRequest {
+  int64 merchantId=1;
+  int32    typeShop = 2;
+  string     province = 3;
+  string     city = 4;
+  string     district = 5;
+  string   address = 6;
+  string   name = 7;
+  int32  sort = 8;
+}
+
+message DataReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+message ListReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated Data data = 3;
+}
+
+message Data{
+  int64   id = 1;
+  string  name = 2;
+  string  telephone = 3;
+  string  wechat = 4;
+  string  email = 5;
+  string  province = 6;
+  string  city = 7;
+  string  district = 8;
+  string  address = 9;
+  string  longitude = 10;
+  string  latitude = 11;
+  int64   leaderId = 12;
+  int32   typeShop = 13;
+  string  businessHours = 14;
+  int64     sort = 15;
+  string  remark = 16;
+  Seat seat = 17;
+  repeated Setting setting = 18;
+
+  message Seat{
+    int32 total = 1;
+    int32 using = 2;
+    repeated ShopAreaCount shopAreaCount = 3;
+  };
+  message ShopAreaCount{
+    int64 shopId=1;
+    int64 shopAreaId=2;
+    int32 total=3;
+  }
+  message Setting{
+    int64 id = 1;
+    string key = 2;
+    string name = 3;
+    string value = 4;
+    int32 valueType = 5;
+  };
+}
+//    kratos proto server api/shop/v1/shop.proto -t internal/service
+
+
+
+message UploadQrCodeRequest {
+  int64 shopId=1;
+  string qrCodeBase64 = 2;
+}
+
+message QrCodeReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data{
+    string qrCodePath = 1;
+
+  }
+}

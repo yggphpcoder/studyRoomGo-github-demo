@@ -1,0 +1,32 @@
+base:
+  is_dev: false
+out_dir: ../gen # 输出目录
+url_tag: json # web url tag(json,db(https://github.com/google/go-querystring))
+language: 中 文 # 语言(English,中 文)
+db_tag: gorm # 数据库标签(gorm,db)
+simple: false # 简单输出(默认gorm标签不输出)
+is_out_sql: false # 是否输出 sql 原信息
+is_out_func: true # 是否输出 快捷函数
+is_foreign_key: true # 是否导出外键关联
+is_gui: false # 是否ui模式显示
+is_table_name: true # 是否直接生成表名,列名
+is_null_to_point: true # 数据库默认 'DEFAULT NULL' 时设置结构为指针类型
+is_web_tag: false
+is_web_tag_pk_hidden: false
+table_prefix: "" #表前缀
+#table_names: "sr_equipment,sr_member,sr_member_package_card,sr_member_package_card_operate_log,sr_member_package_card_use_log,sr_package_card,sr_package_card_member_buy_log,sr_seat,sr_seat_book,sr_seat_lock,sr_seat_type,sr_shop,sr_shop_area,sr_shop_area_seat_price,sr_shop_area_type,wx_userinfo,sys_dict_data" #指定表生成，多个表用,隔开
+table_names: "sr_member" #指定表生成，多个表用,隔开
+is_column_name: true # 是否生成列名
+is_out_file_by_table_name: true # 是否根据表名生成多个model
+db_info:
+  host: xxx
+  port: xxx
+  username: root
+  password: xxx
+  database: study_room
+  type: 0 # 数据库类型:0:mysql , 1:sqlite , 2:mssql
+self_type_define: # 自定义数据类型映射
+  datetime: time.Time
+  date: time.Time
+out_file_name: "" # 自定义生成文件名
+web_tag_type: 0 # json tag类型 0: 小驼峰 1: 下划线

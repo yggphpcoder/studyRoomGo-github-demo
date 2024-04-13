@@ -1,0 +1,403 @@
+syntax = "proto3";
+
+package api.member.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/member/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.member.v1";
+
+service Member {
+  rpc Create(CreateRequest) returns (CreateReply);
+
+  rpc Update(UpdateRequest) returns (DataReply) {
+    option (google.api.http) = {
+      put : "/member/v1/member"
+      body : "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description : "";
+  summary:
+    "更新用户信息";
+  };
+};
+rpc Delete(DeleteRequest) returns (DeleteReply);
+
+rpc Get(GetRequest) returns (DataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/member"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户信息";
+};
+}
+;
+rpc uploadAvatar(UploadAvatarRequest) returns (AvatarReply) {
+  option (google.api.http) = {
+    post : "/member/v1/upload_avatar",
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "上传用户头像";
+};
+}
+;
+rpc MyPackageCardList(ListRequest) returns (MyPackageCardDataListReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_package_card/list"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户套餐列表";
+};
+}
+;
+rpc MyPackageCard(GetRequest) returns (MyPackageCardDataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_package_card/detail/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户套餐信息";
+};
+}
+;
+rpc MySeatBookList(MySeatBookListRequest) returns (MySeatBookDataListReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_seat_book/list"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户订座列表";
+};
+}
+;
+rpc MySeatLockList(MySeatLockRequest) returns (MySeatLockDataListReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_seat_lock/list"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户锁位列表";
+};
+}
+;
+rpc MySeatBook(MySeatBookRequest) returns (MySeatBookDataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_seat_book/detail/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户订座";
+};
+}
+;
+rpc MyCurrentUsePackageCard(MyCurrentPackageCardRequest)
+    returns (MyPackageCardDataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/current_use_package_card"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "最近使用的套餐";
+};
+}
+;
+rpc MySeatBookShared(MySeatBookRequest) returns (MySeatBookDataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_seat_book_shared/detail/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户分享订座";
+};
+}
+;
+rpc MySeatBookLiveShared(MySeatBookRequest) returns (MySeatBookDataReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_seat_book_live_shared/detail/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "获取用户分享现场监控";
+};
+}
+;
+
+rpc MyNotice(MyNoticeRequest) returns (MyNoticeDataListReply) {
+  option (google.api.http) = {
+    get : "/member/v1/my_notice"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "我的消息列表";
+};
+}
+;
+
+rpc LastNotice(MyNoticeRequest) returns (MyNoticeDataListReply) {
+  option (google.api.http) = {
+    get : "/member/v1/last_notice"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "最近的一条消息";
+};
+}
+;
+
+rpc ReadNotice(MyNoticeRequest) returns (MyNoticeDataReply) {
+  option (google.api.http) = {
+    post : "/member/v1/read_notice",
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "已读消息";
+};
+}
+;
+rpc WxSubscribe(WxSubscribeRequest) returns (WxSubscribeReply) {
+  option (google.api.http) = {
+    post : "/member/v1/wx_subscribe",
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "";
+summary:
+  "微信消息订阅";
+};
+}
+;
+}
+
+message CreateRequest {}
+message CreateReply {}
+
+message UpdateRequest {
+  string avatarPath = 2;
+  string nickName = 3;
+  string phone = 4;
+}
+
+message DeleteRequest {}
+message DeleteReply {}
+
+message GetRequest { int64 id = 1; }
+
+message ListRequest { int32 status = 1; }
+message DataReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+
+message Data {
+  int64 id = 1;
+  string avatarPath = 2;
+  string nickName = 3;
+  string phone = 4;
+  int32 type = 5;
+  int32 status = 6;
+  bool needUpdate = 7;
+  bool hasNoReadNotice = 8;
+}
+
+message MyPackageCardDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MyPackageCardData data = 3;
+}
+
+message MyPackageCardDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyPackageCardData data = 3;
+}
+message MyPackageCardData {
+  int64 id = 1;
+  int64 memberId = 2;
+  float actualAmount = 3;
+  int32 remainMinute = 4;
+  int32 remainDay = 5;
+  int32 minutePer = 6;
+  int32 minuteMax = 7;
+  int32 minuteMin = 8;
+  int32 status = 9;
+  int32 typeChannel = 10;
+  string activeAt = 11;
+  string invalidAt = 12;
+  int64 packageId = 13;
+  string packageName = 14;
+  int32 typePackage = 15;
+  int32 typeCard = 16;
+  int32 typeSale = 17;
+  float price = 18;
+  float oriPrice = 19;
+  string useShop = 20;
+  string useSeat = 21;
+  string useTime = 22;
+  int32 useBalance = 23;
+  int32 validDay = 24;
+  int32 activeLimit = 25;
+  int32 sort = 26;
+  string remark = 27;
+  string createdAt = 28;
+  bool canBookingToCloseTime = 29;
+  string canBookingToHour = 30;
+  repeated int32 useShopId = 31;
+}
+
+message UploadAvatarRequest { string avatarBase64 = 1; }
+
+message AvatarReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data { string avatarPath = 1; }
+}
+
+message MySeatBookRequest {
+  int64 id = 1;
+  int64 memberId = 2;
+  string token = 3;
+  string openId = 4;
+}
+
+message MySeatBookListRequest {
+  int64 shopId = 1;
+  int64 bookId = 2;
+  int32 status = 3
+      [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) =
+            {description : "1:进行中的订座", example : "", default : ""} ];
+  int32 sort = 4;
+  int32 page = 5;
+  int32 pageSize = 6;
+}
+
+message MySeatLockRequest { int32 status = 1; }
+
+message MySeatBookDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MySeatBookData data = 3;
+}
+message MySeatBookDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MySeatBookData data = 3;
+}
+
+message MySeatBookData {
+  int64 id = 1;
+  int64 shopId = 2;
+  int64 shopAreaId = 3;
+  int64 seatId = 4;
+  int64 mCardId = 5;
+  string shopLabel = 6;
+  string shopAreaLabel = 7;
+  string seatLabel = 8;
+  string seatTypeLabel = 9;
+  string packageLabel = 10;
+  int32 packageType = 11;
+  int32 bookingType = 12;
+  int32 bookingDay = 13;
+  int32 bookingMinute = 14;
+  string bookingStartDay = 15;
+  string bookingEndDay = 16;
+  string bookingStart = 17;
+  string bookingEnd = 18;
+  string todaySeatAt = 19;
+  string todayEndAt = 20;
+  int32 status = 21;
+  string shopAreaCover = 22;
+  int32 canShare = 23;
+  int32 sharedCount = 24;
+  int32 canShareLive = 25;
+  int32 canCtrlLight = 26;
+  string liveAddress = 27;
+}
+
+message MyCurrentPackageCardRequest { int64 shopId = 1; }
+
+message MySeatLockDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MySeatLockData data = 3;
+}
+
+message MySeatLockData {
+  int64 id = 1;
+  int64 memberId = 2;
+  int64 shopId = 3;
+  int64 shopAreaId = 4;
+  int64 seatId = 5;
+  string lockingStartDay = 6;
+  string lockingEndDay = 7;
+  string lockingStart = 8;
+  string lockingEnd = 9;
+  string useTime = 10;
+  int32 status = 11;
+  string shopLabel = 12;
+  string shopAreaLabel = 13;
+  string seatLabel = 14;
+  string seatTypeLabel = 15;
+  string shopAreaCover = 16;
+  string packageLabel = 17;
+  int64 memberPackageCardId = 18;
+  int32 canControl = 19;
+}
+
+message MyNoticeRequest {
+  repeated int64 id = 1;
+  int32 isRead = 2;
+  int32 page = 3;
+  int32 pageSize = 4;
+}
+
+message MyNoticeDataReply {
+  int32 code = 1;
+  string msg = 2;
+  MyNoticeData data = 3;
+}
+message MyNoticeDataListReply {
+  int32 code = 1;
+  string msg = 2;
+  repeated MyNoticeData data = 3;
+}
+
+message MyNoticeData {
+  int64 id = 1;
+  string title = 2;
+  string content = 3;
+  int32 noticeType = 4;
+  string extJson = 5;
+  string createdAt = 6;
+}
+
+message WxSubscribeRequest {
+  repeated string type = 1;
+  repeated int32 isSubscribe = 2;
+}
+
+message WxSubscribeReply {
+  int32 code = 1;
+  string msg = 2;
+}

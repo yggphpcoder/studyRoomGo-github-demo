@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package api.auth.v1;
+import "google/api/annotations.proto";
+
+option go_package = "studyRoomGo/api/auth/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.auth.v1";
+
+service Auth {
+  rpc WxLogin(WxLoginRequest) returns (CreateAuthReply) {
+    option (google.api.http) = {
+      post : "/auth/v1/wxLogin"
+      body : "*"
+    };
+  };
+
+  rpc LoginAndRegisterByWeChat(LoginByWeChatRequest)
+      returns (LoginByWeChatReply) {
+    option (google.api.http) = {
+      post : "/auth/v1/loginAndRegisterByWeChat",
+      body : "*"
+    };
+  };
+  rpc OauthLogin(WxLoginRequest) returns (LoginByWeChatReply) {
+    option (google.api.http) = {
+      post : "/auth/v1/oauthLogin"
+      body : "*"
+    };
+  };
+  rpc GetShareSign(GetShareSignRequest) returns (GetShareSignReply) {
+    option (google.api.http) = {
+      post : "/auth/v1/getShareSign"
+      body : "*"
+    };
+  };
+  rpc ShareRecord(ShareRecordRequest) returns (ShareRecordReply) {
+    option (google.api.http) = {
+      post : "/auth/v1/shareRecord"
+      body : "*"
+    };
+  };
+}
+
+message WxLoginRequest { string jsCode = 1; }
+message CreateAuthReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    string openId = 1; // OpenID
+  }
+}
+message LoginByWeChatRequest {
+  string openId = 1;
+  string phoneCode = 2;
+}
+message LoginByWeChatReply {
+  int32 code = 1;
+  string msg = 2;
+  string jwtToken = 3; // JwtToken
+}
+
+message GetShareSignRequest {
+  string openId = 1;
+  int64 memberId = 2;
+  int64 relateId = 3;
+  string type = 4;
+}
+
+message GetShareSignReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    string sign = 1; // 签名
+  }
+}
+
+message ShareRecordRequest {
+  string openId = 1;
+  int64 memberId = 2;
+  int64 relateId = 3;
+  string type = 4;
+  int64 shareMemberId = 5;
+  string shareOpenId = 6;
+  string sign = 7;
+}
+
+message ShareRecordReply {
+  int32 code = 1;
+  string msg = 2;
+}

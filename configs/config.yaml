@@ -1,0 +1,27 @@
+environment: dev
+server:
+  http:
+    addr: 0.0.0.0:8080
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 1s
+data:
+  debug: true
+  database:
+    driver: mysql
+    source: root:password@tcp(10.0.1.1:3306)/dev_study_room?charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=True&loc=Local&timeout=1000ms
+    log_file:
+  redis:
+    addr: 127.0.0.1:6379
+    password: "000415"
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+upload:
+  uri: /Users/yg/go/src/nginx/static
+  avatar:
+    dir: avatar
+  qrcode:
+    dir: qrcode
+conf:
+  dir: /Users/yg/go/src/studyRoom/studyRoomGo/configs

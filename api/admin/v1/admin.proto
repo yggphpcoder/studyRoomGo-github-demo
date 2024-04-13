@@ -1,0 +1,245 @@
+syntax = "proto3";
+
+package api.admin.v1;
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/admin/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.admin.v1";
+
+service Admin {
+  rpc BookingValidate(BookingRequest) returns (BookingValidateReply) {
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description : "订座校验";
+  summary:
+    "订座校验";
+  };
+};
+rpc Booking(BookingRequest) returns (BookingReply) {
+
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "订座";
+summary:
+  "订座";
+};
+}
+;
+rpc BookingChangeSeat(BookingChangeSeatRequest) returns (BookingReply) {
+
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "换座";
+summary:
+  "换座";
+};
+}
+;
+rpc BookingAddTime(BookingAddTimeRequest) returns (BookingReply) {
+
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "延长订座时间";
+summary:
+  "延长订座时间";
+};
+}
+;
+rpc BookingChangeStatus(BookingChangeStatusRequest) returns (BookingReply) {
+
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "更改订座状态；取消，入座，结束";
+summary:
+  "更改订座状态";
+};
+}
+;
+rpc BookingOpenDoor(BookingOpenDoorRequest) returns (BookingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "开门";
+summary:
+  "开门";
+};
+}
+;
+rpc BookingControlLight(BookingControlSeatRequest) returns (BookingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "开关灯";
+summary:
+  "开关灯";
+};
+}
+;
+rpc DianpingRefreshShop(DianpingRequest) returns (DianpingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "刷新店铺列表";
+summary:
+  "刷新店铺列表";
+};
+}
+;
+rpc DianpingRefreshTuanGou(DianpingRequest) returns (DianpingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "刷新团购列表";
+summary:
+  "刷新团购列表";
+};
+}
+;
+rpc SendSeatBookSubscribe(BookingSubscribeRequest) returns (BookingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "订座订阅消息提醒";
+summary:
+  "订座订阅消息提醒";
+};
+}
+;
+rpc ExecProfitSharingOrder(ProfitSharingRequest) returns (BookingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "执行分账";
+summary:
+  "执行分账";
+};
+}
+;
+rpc UpdateProfitSharingOrderStatus(ProfitSharingRequest)
+    returns (BookingReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "更新分账结果";
+summary:
+  "更新分账结果";
+};
+}
+;
+
+rpc SendCoupon(SendCouponRequest) returns (SendCouponReply) {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "派发优惠券";
+summary:
+  "派发优惠券";
+};
+}
+;
+rpc StudentChangeCheckIn(StudentChangeCheckInRequest) returns (BookingReply) {
+
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "学生签到状态";
+summary:
+  "学生签到状态";
+};
+}
+;
+}
+
+message Booking {
+  int64 id = 1;
+  int64 memberId = 2;
+  int32 bookingType = 3;
+  int32 bookingDay = 4;
+  int32 bookingMinute = 5;
+  string bookingStartDay = 6;
+  string bookingEndDay = 7;
+  string bookingStart = 8;
+  string bookingEnd = 9;
+  int32 status = 10;
+}
+
+message Locking {
+  int64 memberId = 1;
+  string lockingStartDay = 2;
+  string lockingEndDay = 3;
+  string lockingStart = 4;
+  string lockingEnd = 5;
+  int32 status = 6;
+}
+
+message BookingRequest {
+  int64 seatId = 1;
+  int64 memberId = 2;
+  int64 memberPackageCardId = 3;
+  int64 shopId = 4;
+  int64 merchantId = 5;
+  int32 bookingType = 6;
+  string bookingStartDay = 7;
+  string bookingEndDay = 8;
+  string bookingStart = 9;
+  string bookingEnd = 10;
+  bool bookingToCloseTime = 11;
+  int32 bookingHours = 12;
+  int32 noEnoughUse = 13;
+  string receiptCode = 14;
+  int32 useRemain = 15;
+  int32 bookingMinute = 16;
+  repeated int32 bookingWeek = 17;
+}
+
+message BookingChangeSeatRequest {
+  int64 bookId = 1;
+  int64 changeSeatId = 2;
+}
+message BookingAddTimeRequest {
+  int64 bookId = 1;
+  bool bookingToCloseTime = 2;
+  int32 bookingMin = 3;
+}
+message BookingOpenDoorRequest {
+  int64 bookId = 1;
+  int64 door = 2;
+}
+message BookingChangeStatusRequest {
+  int64 bookId = 1;
+  int32 changeStatus = 2;
+}
+
+message BookingControlSeatRequest { int64 bookId = 1; }
+message BookingSubscribeRequest { int64 merchantId = 1; }
+
+message ProfitSharingRequest { int64 ProfitSharingId = 1; }
+
+message BookingReply {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message BookingValidateReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    bool isValid = 1;
+    int32 invalidCode = 2;
+    string reason = 3;
+    repeated PackageCard packageCard = 4;
+  }
+
+  message PackageCard {
+    int64 id = 1;
+    bool isValid = 2;
+    int32 invalidCode = 3;
+    string reason = 4;
+    int32 bookingMinute = 5;
+    int32 bookingDay = 6;
+  }
+}
+
+message DianpingRequest { string appkey = 1; }
+
+message DianpingReply {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message SendCouponRequest {
+  int64 couponId = 1;
+  int64 memberId = 2;
+  string notice = 3;
+  int64 shopId = 4;
+}
+
+message SendCouponReply {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message StudentChangeCheckInRequest {
+  int64 coursesSchedulingId = 1;
+  int32 changeCheckIn = 2;
+}

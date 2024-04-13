@@ -1,0 +1,3881 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /auth/v1/getShareSign:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_GetShareSign
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.auth.v1.GetShareSignRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.auth.v1.GetShareSignReply'
+    /auth/v1/loginAndRegisterByWeChat:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_LoginAndRegisterByWeChat
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.auth.v1.LoginByWeChatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.auth.v1.LoginByWeChatReply'
+    /auth/v1/oauthLogin:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_OauthLogin
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.auth.v1.WxLoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.auth.v1.LoginByWeChatReply'
+    /auth/v1/shareRecord:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_ShareRecord
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.auth.v1.ShareRecordRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.auth.v1.ShareRecordReply'
+    /auth/v1/wxLogin:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_WxLogin
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.auth.v1.WxLoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.auth.v1.CreateAuthReply'
+    /config/v1/dict/detail/{id}:
+        get:
+            tags:
+                - Config
+            description: |-
+                rpc Create (CreateRequest) returns (CreateReply);
+                  rpc Update (UpdateRequest) returns (UpdateReply);
+                  rpc Delete (DeleteRequest) returns (DeleteReply);
+            operationId: Config_GetDict
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.DataDictReply'
+    /config/v1/dict/find:
+        get:
+            tags:
+                - Config
+            operationId: Config_FindDict
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.DataDictReply'
+    /config/v1/dict/list:
+        get:
+            tags:
+                - Config
+            operationId: Config_ListDict
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.ListDictReply'
+    /config/v1/dict/search:
+        get:
+            tags:
+                - Config
+            operationId: Config_SearchDict
+            parameters:
+                - name: type
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.ListDictReply'
+    /config/v1/ed-dict/search:
+        get:
+            tags:
+                - Config
+            operationId: Config_SearchEdDict
+            parameters:
+                - name: type
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.ListDictReply'
+    /config/v1/setting/search:
+        get:
+            tags:
+                - Config
+            operationId: Config_SearchSetting
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: merchantId
+                  in: query
+                  schema:
+                    type: string
+                - name: group
+                  in: query
+                  schema:
+                    type: string
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.config.v1.ListSettingReply'
+    /coupon/v1/coupon_center:
+        get:
+            tags:
+                - Coupon
+            operationId: Coupon_CouponCenter
+            parameters:
+                - name: notUsed
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.coupon.v1.CouponListReply'
+    /coupon/v1/my_coupon:
+        get:
+            tags:
+                - Coupon
+            operationId: Coupon_MyCoupon
+            parameters:
+                - name: notUsed
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.coupon.v1.CouponListReply'
+    /coupon/v1/receive_coupon:
+        get:
+            tags:
+                - Coupon
+            operationId: Coupon_ReceiveCoupon
+            parameters:
+                - name: couponCode
+                  in: query
+                  schema:
+                    type: string
+                - name: notice
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.coupon.v1.ReceiveCouponReply'
+    /coupon/v1/use_coupon_validate:
+        post:
+            tags:
+                - Coupon
+            operationId: Coupon_UseCouponValidate
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.coupon.v1.CouponUseRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.coupon.v1.CouponUseValidateReply'
+    /course/v1/course/{id}:
+        get:
+            tags:
+                - Course
+            operationId: Course_Get
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.DataReply'
+    /course/v1/find:
+        get:
+            tags:
+                - Course
+            operationId: Course_Find
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.DataReply'
+    /course/v1/list:
+        get:
+            tags:
+                - Course
+            operationId: Course_List
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.ListReply'
+    /course/v1/my_course_scheduling:
+        get:
+            tags:
+                - Course
+            operationId: Course_MyCourseScheduling
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: courseId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyCourseSchedulingDataListReply'
+    /course/v1/my_student:
+        get:
+            tags:
+                - Course
+            operationId: Course_MyStudentList
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: photo
+                  in: query
+                  schema:
+                    type: string
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: phone
+                  in: query
+                  schema:
+                    type: string
+                - name: gender
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyStudentDataListReply'
+        put:
+            tags:
+                - Course
+            operationId: Course_UpdateMyStudent
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.course.v1.MyStudentRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyStudentDataReply'
+        post:
+            tags:
+                - Course
+            operationId: Course_CreateMyStudent
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.course.v1.MyStudentRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyStudentDataReply'
+    /course/v1/my_student_course:
+        get:
+            tags:
+                - Course
+            operationId: Course_MyStudentCourse
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: courseId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyStudentCourseDataListReply'
+    /course/v1/my_student_info:
+        get:
+            tags:
+                - Course
+            operationId: Course_MyStudentInfo
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: photo
+                  in: query
+                  schema:
+                    type: string
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: phone
+                  in: query
+                  schema:
+                    type: string
+                - name: gender
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyStudentDataReply'
+    /course/v1/search:
+        get:
+            tags:
+                - Course
+            operationId: Course_Search
+            parameters:
+                - name: useShop
+                  in: query
+                  schema:
+                    type: string
+                - name: teachingType
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: courseType
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.ListReply'
+    /course/v1/teacher_class_scheduling:
+        get:
+            tags:
+                - Course
+            operationId: Course_TeacherClassScheduling
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: courseId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyClassSchedulingDataListReply'
+    /course/v1/teacher_class_scheduling_check_in:
+        post:
+            tags:
+                - Course
+            operationId: Course_TeacherClassSchedulingCheckIn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.course.v1.ClassSchedulingCheckInRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.CheckInReply'
+    /course/v1/teacher_course_scheduling:
+        get:
+            tags:
+                - Course
+            operationId: Course_TeacherCourseScheduling
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+                - name: studentId
+                  in: query
+                  schema:
+                    type: string
+                - name: courseId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.MyCourseSchedulingDataListReply'
+    /course/v1/teacher_course_scheduling_check_in:
+        post:
+            tags:
+                - Course
+            operationId: Course_TeacherCourseSchedulingCheckIn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.course.v1.CourseSchedulingCheckInRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.course.v1.CheckInReply'
+    /dianping/v1/accessToken:
+        post:
+            tags:
+                - Dianping
+            operationId: Dianping_AccessToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.dianping.v1.PrepareRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.dianping.v1.DataReply'
+    /dianping/v1/prepare:
+        post:
+            tags:
+                - Dianping
+            operationId: Dianping_Prepare
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.dianping.v1.PrepareRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.dianping.v1.DataReply'
+    /dianping/v1/scanprepare:
+        post:
+            tags:
+                - Dianping
+            operationId: Dianping_ScanPrepare
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.dianping.v1.PrepareRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.dianping.v1.DataReply'
+    /equipment/v1/equipment/main/{pId}:
+        post:
+            tags:
+                - Equipment
+            operationId: Equipment_AutomateMain
+            parameters:
+                - name: pId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.equipment.v1.ListRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.ListReply'
+    /equipment/v1/equipment/shop/{shopId}:
+        post:
+            tags:
+                - Equipment
+            operationId: Equipment_AutomateAll
+            parameters:
+                - name: shopId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.equipment.v1.ListRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.ListReply'
+    /equipment/v1/equipment/{id}:
+        post:
+            tags:
+                - Equipment
+            operationId: Equipment_Automate
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.equipment.v1.GetRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.DataReply'
+    /equipment/v1/list:
+        get:
+            tags:
+                - Equipment
+            operationId: Equipment_List
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: pId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.ListReply'
+    /equipment/v1/liverCameraList:
+        get:
+            tags:
+                - Equipment
+            operationId: Equipment_LiverCameraList
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: pId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.LiverCameraListReply'
+    /equipment/v1/openDoor/{id}:
+        post:
+            tags:
+                - Equipment
+            operationId: Equipment_OpenDoor
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.equipment.v1.GetRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.equipment.v1.DataReply'
+    /member/v1/current_use_package_card:
+        get:
+            tags:
+                - Member
+            operationId: Member_MyCurrentUsePackageCard
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyPackageCardDataReply'
+    /member/v1/last_notice:
+        get:
+            tags:
+                - Member
+            operationId: Member_LastNotice
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: array
+                    items:
+                        type: string
+                - name: isRead
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyNoticeDataListReply'
+    /member/v1/member:
+        get:
+            tags:
+                - Member
+            operationId: Member_Get
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.DataReply'
+        put:
+            tags:
+                - Member
+            operationId: Member_Update
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.member.v1.UpdateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.DataReply'
+    /member/v1/my_notice:
+        get:
+            tags:
+                - Member
+            operationId: Member_MyNotice
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: array
+                    items:
+                        type: string
+                - name: isRead
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyNoticeDataListReply'
+    /member/v1/my_package_card/detail/{id}:
+        get:
+            tags:
+                - Member
+            operationId: Member_MyPackageCard
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyPackageCardDataReply'
+    /member/v1/my_package_card/list:
+        get:
+            tags:
+                - Member
+            operationId: Member_MyPackageCardList
+            parameters:
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyPackageCardDataListReply'
+    /member/v1/my_seat_book/detail/{id}:
+        get:
+            tags:
+                - Member
+            operationId: Member_MySeatBook
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: memberId
+                  in: query
+                  schema:
+                    type: string
+                - name: token
+                  in: query
+                  schema:
+                    type: string
+                - name: openId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MySeatBookDataReply'
+    /member/v1/my_seat_book/list:
+        get:
+            tags:
+                - Member
+            operationId: Member_MySeatBookList
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: bookId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MySeatBookDataListReply'
+    /member/v1/my_seat_book_live_shared/detail/{id}:
+        get:
+            tags:
+                - Member
+            operationId: Member_MySeatBookLiveShared
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: memberId
+                  in: query
+                  schema:
+                    type: string
+                - name: token
+                  in: query
+                  schema:
+                    type: string
+                - name: openId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MySeatBookDataReply'
+    /member/v1/my_seat_book_shared/detail/{id}:
+        get:
+            tags:
+                - Member
+            operationId: Member_MySeatBookShared
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: memberId
+                  in: query
+                  schema:
+                    type: string
+                - name: token
+                  in: query
+                  schema:
+                    type: string
+                - name: openId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MySeatBookDataReply'
+    /member/v1/my_seat_lock/list:
+        get:
+            tags:
+                - Member
+            operationId: Member_MySeatLockList
+            parameters:
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MySeatLockDataListReply'
+    /member/v1/read_notice:
+        post:
+            tags:
+                - Member
+            operationId: Member_ReadNotice
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.member.v1.MyNoticeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.MyNoticeDataReply'
+    /member/v1/upload_avatar:
+        post:
+            tags:
+                - Member
+            operationId: Member_UploadAvatar
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.member.v1.UploadAvatarRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.AvatarReply'
+    /member/v1/wx_subscribe:
+        post:
+            tags:
+                - Member
+            operationId: Member_WxSubscribe
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.member.v1.WxSubscribeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.member.v1.WxSubscribeReply'
+    /order/v1/cal_order_total_price:
+        post:
+            tags:
+                - Order
+            operationId: Order_CalOrderTotalPrice
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.order.v1.BuyCardOrderRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.order.v1.BuyCardOrderReply'
+    /package_card/v1/buyCard:
+        post:
+            tags:
+                - PackageCard
+            operationId: PackageCard_BuyCard
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.packageCard.v1.CardRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.CardReply'
+    /package_card/v1/find:
+        get:
+            tags:
+                - PackageCard
+            operationId: PackageCard_Find
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.DataReply'
+    /package_card/v1/findBuyLog:
+        get:
+            tags:
+                - PackageCard
+            operationId: PackageCard_FindBuyLog
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.BuyLogDataReply'
+    /package_card/v1/list:
+        get:
+            tags:
+                - PackageCard
+            operationId: PackageCard_List
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.ListReply'
+    /package_card/v1/member_card_active:
+        post:
+            tags:
+                - PackageCard
+            operationId: PackageCard_MemberCardActive
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.packageCard.v1.CardRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.CardReply'
+    /package_card/v1/package_card/{id}:
+        get:
+            tags:
+                - PackageCard
+            operationId: PackageCard_Get
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.DataReply'
+    /package_card/v1/search:
+        get:
+            tags:
+                - PackageCard
+            operationId: PackageCard_Search
+            parameters:
+                - name: useShop
+                  in: query
+                  schema:
+                    type: string
+                - name: useSeat
+                  in: query
+                  schema:
+                    type: string
+                - name: typePackage
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: typeCard
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: typeSale
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.packageCard.v1.ListReply'
+    /payment/v1/wxpay_checkout:
+        post:
+            tags:
+                - Payment
+            operationId: Payment_WxPayCheckout
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.payment.v1.WxCheckoutRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.payment.v1.WxCheckoutReply'
+    /payment/v1/wxpay_checkout_buy_card:
+        post:
+            tags:
+                - Payment
+            operationId: Payment_WxPayCheckoutBuyCard
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.payment.v1.WxCheckoutBuyCardRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.payment.v1.WxCheckoutReply'
+    /payment/v1/wxpay_checkout_buy_course:
+        post:
+            tags:
+                - Payment
+            operationId: Payment_WxPayCheckoutBuyCourse
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.payment.v1.WxCheckoutBuyCourseRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.payment.v1.WxCheckoutReply'
+    /payment/v1/wxpay_checkout_return:
+        post:
+            tags:
+                - Payment
+            operationId: Payment_WxPayCheckoutReturn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.payment.v1.WxCheckoutReturnRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.payment.v1.WxCheckoutReturnReply'
+    /payment/v1/{merchantSign}/wxpay_notice:
+        post:
+            tags:
+                - Payment
+            operationId: Payment_WxPayNotice
+            parameters:
+                - name: merchantSign
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.payment.v1.WxNoticeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.payment.v1.WxNoticeReply'
+    /seat/v1/booking:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_Booking
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_add_time:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingAddTime
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingAddTimeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_change_seat:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingChangeSeat
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingChangeSeatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_change_status:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingChangeStatus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingChangeStatusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_control_light:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingControlLight
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingControlSeatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_control_light_shared:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingControlLightShared
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingControlSeatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_open_door:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingOpenDoor
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingOpenDoorRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_open_door_shared:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingOpenDoorShared
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingOpenDoorRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/booking_share_gen_token:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingShareGenToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingControlSeatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingGenSharekDataReply'
+    /seat/v1/booking_validate:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_BookingValidate
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.BookingRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingValidateReply'
+    /seat/v1/find:
+        get:
+            tags:
+                - Seat
+            operationId: Seat_Find
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+                - name: gteDateEnd
+                  in: query
+                  schema:
+                    type: string
+                - name: lteDateEnd
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.DataReply'
+    /seat/v1/list:
+        get:
+            tags:
+                - Seat
+            operationId: Seat_List
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.ListReply'
+    /seat/v1/locking_control_light:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_LockingControlLight
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.LockingControlSeatRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/locking_open_door:
+        post:
+            tags:
+                - Seat
+            operationId: Seat_LockingOpenDoor
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.seat.v1.LockingOpenDoorRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.BookingReply'
+    /seat/v1/overview:
+        get:
+            tags:
+                - Seat
+            operationId: Seat_Overview
+            parameters:
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: gteDateEnd
+                  in: query
+                  schema:
+                    type: string
+                - name: lteDateEnd
+                  in: query
+                  schema:
+                    type: string
+                - name: lteDateStart
+                  in: query
+                  schema:
+                    type: string
+                - name: gteDateStart
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.OverviewReply'
+    /seat/v1/search:
+        get:
+            tags:
+                - Seat
+            operationId: Seat_Search
+            parameters:
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: pid
+                  in: query
+                  schema:
+                    type: string
+                - name: typeSeat
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: shopId
+                  in: query
+                  schema:
+                    type: string
+                - name: shopAreaId
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.ListReply'
+    /seat/v1/seat/{id}:
+        get:
+            tags:
+                - Seat
+            operationId: Seat_Get
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.seat.v1.DataReply'
+    /shop/v1/find:
+        get:
+            tags:
+                - Shop
+            operationId: Shop_Find
+            parameters:
+                - name: key
+                  in: query
+                  schema:
+                    type: string
+                - name: value
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shop.v1.DataReply'
+    /shop/v1/search:
+        get:
+            tags:
+                - Shop
+            operationId: Shop_Search
+            parameters:
+                - name: merchantId
+                  in: query
+                  schema:
+                    type: string
+                - name: typeShop
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: province
+                  in: query
+                  schema:
+                    type: string
+                - name: city
+                  in: query
+                  schema:
+                    type: string
+                - name: district
+                  in: query
+                  schema:
+                    type: string
+                - name: address
+                  in: query
+                  schema:
+                    type: string
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shop.v1.ListReply'
+    /shop/v1/shop/{id}:
+        get:
+            tags:
+                - Shop
+            operationId: Shop_Get
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shop.v1.DataReply'
+    /shop/v1/upload_qrcode:
+        post:
+            tags:
+                - Shop
+            operationId: Shop_UploadQrCode
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.shop.v1.UploadQrCodeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shop.v1.QrCodeReply'
+components:
+    schemas:
+        api.auth.v1.CreateAuthReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.auth.v1.CreateAuthReply_Data'
+        api.auth.v1.CreateAuthReply_Data:
+            type: object
+            properties:
+                openId:
+                    type: string
+        api.auth.v1.GetShareSignReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.auth.v1.GetShareSignReply_Data'
+        api.auth.v1.GetShareSignReply_Data:
+            type: object
+            properties:
+                sign:
+                    type: string
+        api.auth.v1.GetShareSignRequest:
+            type: object
+            properties:
+                openId:
+                    type: string
+                memberId:
+                    type: string
+                relateId:
+                    type: string
+                type:
+                    type: string
+        api.auth.v1.LoginByWeChatReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                jwtToken:
+                    type: string
+        api.auth.v1.LoginByWeChatRequest:
+            type: object
+            properties:
+                openId:
+                    type: string
+                phoneCode:
+                    type: string
+        api.auth.v1.ShareRecordReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.auth.v1.ShareRecordRequest:
+            type: object
+            properties:
+                openId:
+                    type: string
+                memberId:
+                    type: string
+                relateId:
+                    type: string
+                type:
+                    type: string
+                shareMemberId:
+                    type: string
+                shareOpenId:
+                    type: string
+                sign:
+                    type: string
+        api.auth.v1.WxLoginRequest:
+            type: object
+            properties:
+                jsCode:
+                    type: string
+        api.config.v1.DataDict:
+            type: object
+            properties:
+                id:
+                    type: string
+                dictSort:
+                    type: string
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+        api.config.v1.DataDictReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.config.v1.DataDict'
+        api.config.v1.DataSetting:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                key:
+                    type: string
+                valueType:
+                    type: integer
+                    format: int32
+                value:
+                    type: string
+        api.config.v1.ListDictReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.config.v1.DataDict'
+        api.config.v1.ListSettingReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.config.v1.DataSetting'
+        api.coupon.v1.CouponData:
+            type: object
+            properties:
+                code:
+                    type: string
+                memberId:
+                    type: string
+                name:
+                    type: string
+                description:
+                    type: string
+                discountType:
+                    type: integer
+                    format: int32
+                discountValue:
+                    type: integer
+                    format: int32
+                discountRule:
+                    type: string
+                maxDiscount:
+                    type: integer
+                    format: int32
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                isUsed:
+                    type: integer
+                    format: int32
+                validDay:
+                    type: integer
+                    format: int32
+                usageLimitPerUser:
+                    type: integer
+                    format: int32
+                applicableShop:
+                    type: string
+                applicableSeat:
+                    type: string
+                applicableSeatType:
+                    type: string
+                applicablePackageCard:
+                    type: string
+                applicablePackageCardLabel:
+                    type: string
+                applicablePackageCardType:
+                    type: string
+                applicablePackageCardTypeLabel:
+                    type: string
+                applicableShopLabel:
+                    type: string
+                giftCardPercent:
+                    type: integer
+                    format: int32
+                giftPackageCard:
+                    type: string
+                giftPackageCardLabel:
+                    type: string
+        api.coupon.v1.CouponListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.coupon.v1.CouponData'
+        api.coupon.v1.CouponUseRequest:
+            type: object
+            properties:
+                orderType:
+                    type: string
+                cardId:
+                    type: string
+                couponCode:
+                    type: string
+                qty:
+                    type: integer
+                    format: int32
+        api.coupon.v1.CouponUseValidateReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.coupon.v1.CouponUseValidateReply_Data'
+        api.coupon.v1.CouponUseValidateReply_Coupon:
+            type: object
+            properties:
+                code:
+                    type: string
+                isValid:
+                    type: boolean
+                invalidCode:
+                    type: integer
+                    format: int32
+                reason:
+                    type: string
+        api.coupon.v1.CouponUseValidateReply_Data:
+            type: object
+            properties:
+                isValid:
+                    type: boolean
+                invalidCode:
+                    type: integer
+                    format: int32
+                reason:
+                    type: string
+                coupon:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.coupon.v1.CouponUseValidateReply_Coupon'
+        api.coupon.v1.ReceiveCouponReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.course.v1.CheckInReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.course.v1.ClassSchedulingCheckInRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                course:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.CourseSchedulingCheckInRequest'
+        api.course.v1.CourseSchedulingCheckInRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                checkIn:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+        api.course.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                teachingType:
+                    type: integer
+                    format: int32
+                courseType:
+                    type: integer
+                    format: int32
+                buyLimit:
+                    type: integer
+                    format: int32
+                courseSize:
+                    type: integer
+                    format: int32
+                title:
+                    type: string
+                cover:
+                    type: string
+                carousel:
+                    type: string
+                summary:
+                    type: string
+                content:
+                    type: string
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                useShop:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                sale:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.Sale'
+        api.course.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.course.v1.Data'
+        api.course.v1.ListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.Data'
+        api.course.v1.MyClassSchedulingData:
+            type: object
+            properties:
+                id:
+                    type: string
+                courseName:
+                    type: string
+                courseType:
+                    type: integer
+                    format: int32
+                teachingType:
+                    type: integer
+                    format: int32
+                classId:
+                    type: string
+                className:
+                    type: string
+                teacherId:
+                    type: string
+                teacherName:
+                    type: string
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                startTime:
+                    type: string
+                endTime:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                addressId:
+                    type: string
+                addressName:
+                    type: string
+                course:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.MyClassSchedulingData_CourseSchedulingCheckIn'
+        api.course.v1.MyClassSchedulingDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.MyClassSchedulingData'
+        api.course.v1.MyClassSchedulingData_CourseSchedulingCheckIn:
+            type: object
+            properties:
+                id:
+                    type: string
+                checkIn:
+                    type: integer
+                    format: int32
+                studentName:
+                    type: string
+        api.course.v1.MyCourseSchedulingData:
+            type: object
+            properties:
+                id:
+                    type: string
+                studentId:
+                    type: string
+                studentName:
+                    type: string
+                studentCourseId:
+                    type: string
+                courseName:
+                    type: string
+                courseType:
+                    type: integer
+                    format: int32
+                teachingType:
+                    type: integer
+                    format: int32
+                classId:
+                    type: string
+                className:
+                    type: string
+                teacherId:
+                    type: string
+                teacherName:
+                    type: string
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                startTime:
+                    type: string
+                endTime:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                checkIn:
+                    type: integer
+                    format: int32
+                addressId:
+                    type: string
+                addressName:
+                    type: string
+        api.course.v1.MyCourseSchedulingDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.MyCourseSchedulingData'
+        api.course.v1.MyStudentCourseData:
+            type: object
+            properties:
+                id:
+                    type: string
+                title:
+                    type: string
+                studentId:
+                    type: string
+                studentName:
+                    type: string
+                actualAmount:
+                    type: number
+                    format: float
+                remain:
+                    type: integer
+                    format: int32
+                perMin:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                courseId:
+                    type: string
+                courseType:
+                    type: integer
+                    format: int32
+                teachingType:
+                    type: integer
+                    format: int32
+                courseSize:
+                    type: integer
+                    format: int32
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                price:
+                    type: number
+                    format: float
+                oriPrice:
+                    type: number
+                    format: float
+                remark:
+                    type: string
+                validDay:
+                    type: integer
+                    format: int32
+                activeLimit:
+                    type: integer
+                    format: int32
+                activeAt:
+                    type: string
+                invalidAt:
+                    type: string
+        api.course.v1.MyStudentCourseDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.MyStudentCourseData'
+        api.course.v1.MyStudentData:
+            type: object
+            properties:
+                id:
+                    type: string
+                studentId:
+                    type: string
+                name:
+                    type: string
+                phone:
+                    type: string
+                gender:
+                    type: integer
+                    format: int32
+                photo:
+                    type: string
+        api.course.v1.MyStudentDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.course.v1.MyStudentData'
+        api.course.v1.MyStudentDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.course.v1.MyStudentData'
+        api.course.v1.MyStudentRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                studentId:
+                    type: string
+                photo:
+                    type: string
+                name:
+                    type: string
+                phone:
+                    type: string
+                gender:
+                    type: integer
+                    format: int32
+        api.course.v1.Sale:
+            type: object
+            properties:
+                id:
+                    type: string
+                useShop:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                type:
+                    type: integer
+                    format: int32
+                rule:
+                    type: string
+                price:
+                    type: number
+                    format: float
+                oriPrice:
+                    type: number
+                    format: float
+                buyLimit:
+                    type: integer
+                    format: int32
+                startDate:
+                    type: string
+                endDate:
+                    type: string
+                validDay:
+                    type: integer
+                    format: int32
+                activeLimit:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.dianping.v1.Data:
+            type: object
+            properties: {}
+        api.dianping.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.dianping.v1.Data'
+        api.dianping.v1.PrepareRequest:
+            type: object
+            properties:
+                receiptCode:
+                    type: string
+                qrCode:
+                    type: string
+                shopId:
+                    type: string
+        api.equipment.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                pid:
+                    type: string
+                name:
+                    type: string
+                typeEquipment:
+                    type: integer
+                    format: int32
+                typeRelate:
+                    type: integer
+                    format: int32
+                relateID:
+                    type: string
+                operation:
+                    type: integer
+                    format: int32
+        api.equipment.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.equipment.v1.GetRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+        api.equipment.v1.ListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.equipment.v1.Data'
+        api.equipment.v1.ListRequest:
+            type: object
+            properties:
+                shopId:
+                    type: string
+                pId:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+        api.equipment.v1.LiverCameraData:
+            type: object
+            properties:
+                token:
+                    type: string
+                deviceSerial:
+                    type: string
+                channelNo:
+                    type: string
+                channelName:
+                    type: string
+                liveAddress:
+                    type: string
+        api.equipment.v1.LiverCameraListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.equipment.v1.LiverCameraData'
+        api.member.v1.AvatarReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.member.v1.AvatarReply_Data'
+        api.member.v1.AvatarReply_Data:
+            type: object
+            properties:
+                avatarPath:
+                    type: string
+        api.member.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                avatarPath:
+                    type: string
+                nickName:
+                    type: string
+                phone:
+                    type: string
+                type:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                needUpdate:
+                    type: boolean
+                hasNoReadNotice:
+                    type: boolean
+        api.member.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.member.v1.Data'
+        api.member.v1.MyNoticeData:
+            type: object
+            properties:
+                id:
+                    type: string
+                title:
+                    type: string
+                content:
+                    type: string
+                noticeType:
+                    type: integer
+                    format: int32
+                extJson:
+                    type: string
+                createdAt:
+                    type: string
+        api.member.v1.MyNoticeDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.member.v1.MyNoticeData'
+        api.member.v1.MyNoticeDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.member.v1.MyNoticeData'
+        api.member.v1.MyNoticeRequest:
+            type: object
+            properties:
+                id:
+                    type: array
+                    items:
+                        type: string
+                isRead:
+                    type: integer
+                    format: int32
+                page:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+        api.member.v1.MyPackageCardData:
+            type: object
+            properties:
+                id:
+                    type: string
+                memberId:
+                    type: string
+                actualAmount:
+                    type: number
+                    format: float
+                remainMinute:
+                    type: integer
+                    format: int32
+                remainDay:
+                    type: integer
+                    format: int32
+                minutePer:
+                    type: integer
+                    format: int32
+                minuteMax:
+                    type: integer
+                    format: int32
+                minuteMin:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                typeChannel:
+                    type: integer
+                    format: int32
+                activeAt:
+                    type: string
+                invalidAt:
+                    type: string
+                packageId:
+                    type: string
+                packageName:
+                    type: string
+                typePackage:
+                    type: integer
+                    format: int32
+                typeCard:
+                    type: integer
+                    format: int32
+                typeSale:
+                    type: integer
+                    format: int32
+                price:
+                    type: number
+                    format: float
+                oriPrice:
+                    type: number
+                    format: float
+                useShop:
+                    type: string
+                useSeat:
+                    type: string
+                useTime:
+                    type: string
+                useBalance:
+                    type: integer
+                    format: int32
+                validDay:
+                    type: integer
+                    format: int32
+                activeLimit:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                createdAt:
+                    type: string
+                canBookingToCloseTime:
+                    type: boolean
+                canBookingToHour:
+                    type: string
+                useShopId:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+        api.member.v1.MyPackageCardDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.member.v1.MyPackageCardData'
+        api.member.v1.MyPackageCardDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.member.v1.MyPackageCardData'
+        api.member.v1.MySeatBookData:
+            type: object
+            properties:
+                id:
+                    type: string
+                shopId:
+                    type: string
+                shopAreaId:
+                    type: string
+                seatId:
+                    type: string
+                mCardId:
+                    type: string
+                shopLabel:
+                    type: string
+                shopAreaLabel:
+                    type: string
+                seatLabel:
+                    type: string
+                seatTypeLabel:
+                    type: string
+                packageLabel:
+                    type: string
+                packageType:
+                    type: integer
+                    format: int32
+                bookingType:
+                    type: integer
+                    format: int32
+                bookingDay:
+                    type: integer
+                    format: int32
+                bookingMinute:
+                    type: integer
+                    format: int32
+                bookingStartDay:
+                    type: string
+                bookingEndDay:
+                    type: string
+                bookingStart:
+                    type: string
+                bookingEnd:
+                    type: string
+                todaySeatAt:
+                    type: string
+                todayEndAt:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                shopAreaCover:
+                    type: string
+                canShare:
+                    type: integer
+                    format: int32
+                sharedCount:
+                    type: integer
+                    format: int32
+                canShareLive:
+                    type: integer
+                    format: int32
+                canCtrlLight:
+                    type: integer
+                    format: int32
+                liveAddress:
+                    type: string
+        api.member.v1.MySeatBookDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.member.v1.MySeatBookData'
+        api.member.v1.MySeatBookDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.member.v1.MySeatBookData'
+        api.member.v1.MySeatLockData:
+            type: object
+            properties:
+                id:
+                    type: string
+                memberId:
+                    type: string
+                shopId:
+                    type: string
+                shopAreaId:
+                    type: string
+                seatId:
+                    type: string
+                lockingStartDay:
+                    type: string
+                lockingEndDay:
+                    type: string
+                lockingStart:
+                    type: string
+                lockingEnd:
+                    type: string
+                useTime:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                shopLabel:
+                    type: string
+                shopAreaLabel:
+                    type: string
+                seatLabel:
+                    type: string
+                seatTypeLabel:
+                    type: string
+                shopAreaCover:
+                    type: string
+                packageLabel:
+                    type: string
+                memberPackageCardId:
+                    type: string
+                canControl:
+                    type: integer
+                    format: int32
+        api.member.v1.MySeatLockDataListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.member.v1.MySeatLockData'
+        api.member.v1.UpdateRequest:
+            type: object
+            properties:
+                avatarPath:
+                    type: string
+                nickName:
+                    type: string
+                phone:
+                    type: string
+        api.member.v1.UploadAvatarRequest:
+            type: object
+            properties:
+                avatarBase64:
+                    type: string
+        api.member.v1.WxSubscribeReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.member.v1.WxSubscribeRequest:
+            type: object
+            properties:
+                type:
+                    type: array
+                    items:
+                        type: string
+                isSubscribe:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+        api.order.v1.BuyCardOrderReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.order.v1.BuyCardOrderReply_Data'
+        api.order.v1.BuyCardOrderReply_Data:
+            type: object
+            properties:
+                orderNo:
+                    type: string
+                totalPrice:
+                    type: string
+        api.order.v1.BuyCardOrderRequest:
+            type: object
+            properties:
+                cardId:
+                    type: string
+                couponCode:
+                    type: string
+                qty:
+                    type: integer
+                    format: int32
+        api.packageCard.v1.BuyLogData:
+            type: object
+            properties:
+                id:
+                    type: string
+                orderNo:
+                    type: string
+                memberId:
+                    type: string
+                packageCardId:
+                    type: string
+                mpId:
+                    type: string
+        api.packageCard.v1.BuyLogDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.packageCard.v1.BuyLogData'
+        api.packageCard.v1.CardReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.packageCard.v1.CardRequest:
+            type: object
+            properties:
+                cardId:
+                    type: string
+                activeDate:
+                    type: string
+                activeTime:
+                    type: string
+        api.packageCard.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                typePackage:
+                    type: integer
+                    format: int32
+                typeCard:
+                    type: integer
+                    format: int32
+                typeSale:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                price:
+                    type: number
+                    format: float
+                oriPrice:
+                    type: number
+                    format: float
+                validDay:
+                    type: string
+                activeLimit:
+                    type: string
+                buyLimit:
+                    type: string
+                useShop:
+                    type: string
+                useSeat:
+                    type: string
+                useTime:
+                    type: string
+                bookingDay:
+                    type: string
+                bookingMinute:
+                    type: string
+                bookingMinutePer:
+                    type: string
+                bookingMinuteMax:
+                    type: string
+                bookingMinuteMin:
+                    type: string
+                canBalance:
+                    type: integer
+                    format: int32
+                sort:
+                    type: string
+                remark:
+                    type: string
+        api.packageCard.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.packageCard.v1.Data'
+        api.packageCard.v1.ListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.packageCard.v1.Data'
+        api.payment.v1.WxCheckoutBuyCardRequest:
+            type: object
+            properties:
+                cardId:
+                    type: string
+                couponCode:
+                    type: string
+                qty:
+                    type: integer
+                    format: int32
+        api.payment.v1.WxCheckoutBuyCourseRequest:
+            type: object
+            properties:
+                saleId:
+                    type: string
+                studentId:
+                    type: string
+                courseId:
+                    type: string
+                qty:
+                    type: integer
+                    format: int32
+        api.payment.v1.WxCheckoutReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.payment.v1.WxCheckoutReply_Data'
+        api.payment.v1.WxCheckoutReply_Data:
+            type: object
+            properties:
+                orderNo:
+                    type: string
+                timeStamp:
+                    type: string
+                nonceStr:
+                    type: string
+                package:
+                    type: string
+                signType:
+                    type: string
+                paySign:
+                    type: string
+        api.payment.v1.WxCheckoutRequest:
+            type: object
+            properties:
+                orderNo:
+                    type: string
+        api.payment.v1.WxCheckoutReturnReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.payment.v1.WxCheckoutReturnRequest:
+            type: object
+            properties:
+                orderNo:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+        api.payment.v1.WxNoticeReply:
+            type: object
+            properties:
+                code:
+                    type: string
+                message:
+                    type: string
+        api.payment.v1.WxNoticeRequest:
+            type: object
+            properties:
+                spMchid:
+                    type: string
+                spAppid:
+                    type: string
+                subMchid:
+                    type: string
+                subAppid:
+                    type: string
+                transactionId:
+                    type: string
+                outTradeNo:
+                    type: string
+                tradeType:
+                    type: string
+                tradeState:
+                    type: string
+                tradeStateDesc:
+                    type: string
+                bankType:
+                    type: string
+                successTime:
+                    type: string
+                payer:
+                    $ref: '#/components/schemas/api.payment.v1.WxNoticeRequest_Payer'
+                amount:
+                    $ref: '#/components/schemas/api.payment.v1.WxNoticeRequest_Amount'
+                merchantSign:
+                    type: string
+        api.payment.v1.WxNoticeRequest_Amount:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                payerTotal:
+                    type: integer
+                    format: int32
+                currency:
+                    type: string
+                payerCurrency:
+                    type: string
+        api.payment.v1.WxNoticeRequest_Payer:
+            type: object
+            properties:
+                openid:
+                    type: string
+                spOpenid:
+                    type: string
+                subOpenid:
+                    type: string
+        api.seat.v1.Booking:
+            type: object
+            properties:
+                id:
+                    type: string
+                memberId:
+                    type: string
+                bookingType:
+                    type: integer
+                    format: int32
+                bookingDay:
+                    type: integer
+                    format: int32
+                bookingMinute:
+                    type: integer
+                    format: int32
+                bookingStartDay:
+                    type: string
+                bookingEndDay:
+                    type: string
+                bookingStart:
+                    type: string
+                bookingEnd:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+        api.seat.v1.BookingAddTimeRequest:
+            type: object
+            properties:
+                bookId:
+                    type: string
+                bookingToCloseTime:
+                    type: boolean
+                bookingMin:
+                    type: integer
+                    format: int32
+        api.seat.v1.BookingChangeSeatRequest:
+            type: object
+            properties:
+                bookId:
+                    type: string
+                changeSeatId:
+                    type: string
+        api.seat.v1.BookingChangeStatusRequest:
+            type: object
+            properties:
+                bookId:
+                    type: string
+                changeStatus:
+                    type: integer
+                    format: int32
+        api.seat.v1.BookingControlSeatRequest:
+            type: object
+            properties:
+                bookId:
+                    type: string
+                token:
+                    type: string
+                openId:
+                    type: string
+        api.seat.v1.BookingGenSharekDataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.seat.v1.BookingGenSharekDataReply_Data'
+        api.seat.v1.BookingGenSharekDataReply_Data:
+            type: object
+            properties:
+                token:
+                    type: string
+        api.seat.v1.BookingOpenDoorRequest:
+            type: object
+            properties:
+                bookId:
+                    type: string
+                door:
+                    type: string
+                token:
+                    type: string
+                openId:
+                    type: string
+        api.seat.v1.BookingReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+        api.seat.v1.BookingRequest:
+            type: object
+            properties:
+                seatId:
+                    type: string
+                memberPackageCardId:
+                    type: string
+                merchantId:
+                    type: string
+                shopId:
+                    type: string
+                bookingType:
+                    type: integer
+                    format: int32
+                bookingStartDay:
+                    type: string
+                bookingEndDay:
+                    type: string
+                bookingStart:
+                    type: string
+                bookingEnd:
+                    type: string
+                bookingToCloseTime:
+                    type: boolean
+                bookingHours:
+                    type: integer
+                    format: int32
+                noEnoughUse:
+                    type: integer
+                    format: int32
+                receiptCode:
+                    type: string
+                useRemain:
+                    type: integer
+                    format: int32
+                bookingToUseEndTime:
+                    type: boolean
+                bookingMinute:
+                    type: integer
+                    format: int32
+                bookingWeek:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+        api.seat.v1.BookingValidateReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.seat.v1.BookingValidateReply_Data'
+        api.seat.v1.BookingValidateReply_Data:
+            type: object
+            properties:
+                isValid:
+                    type: boolean
+                invalidCode:
+                    type: integer
+                    format: int32
+                reason:
+                    type: string
+                packageCard:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.BookingValidateReply_PackageCard'
+        api.seat.v1.BookingValidateReply_PackageCard:
+            type: object
+            properties:
+                id:
+                    type: string
+                isValid:
+                    type: boolean
+                invalidCode:
+                    type: integer
+                    format: int32
+                reason:
+                    type: string
+                bookingMinute:
+                    type: integer
+                    format: int32
+                bookingDay:
+                    type: integer
+                    format: int32
+        api.seat.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                pid:
+                    type: string
+                name:
+                    type: string
+                typeSeat:
+                    type: integer
+                    format: int32
+                typeSeatLabel:
+                    type: string
+                shopId:
+                    type: string
+                shopAreaId:
+                    type: string
+                shopAreaLabel:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                mapPosition:
+                    type: string
+                booking:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.Booking'
+                locking:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.Locking'
+        api.seat.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.seat.v1.Data'
+        api.seat.v1.ListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.Data'
+        api.seat.v1.Locking:
+            type: object
+            properties:
+                memberId:
+                    type: string
+                lockingStartDay:
+                    type: string
+                lockingEndDay:
+                    type: string
+                lockingStart:
+                    type: string
+                lockingEnd:
+                    type: string
+                useTime:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+        api.seat.v1.LockingControlSeatRequest:
+            type: object
+            properties:
+                lockId:
+                    type: string
+        api.seat.v1.LockingOpenDoorRequest:
+            type: object
+            properties:
+                lockId:
+                    type: string
+                door:
+                    type: string
+        api.seat.v1.OverviewReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.OverviewReply_Data'
+        api.seat.v1.OverviewReply_Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                pid:
+                    type: string
+                name:
+                    type: string
+                typeSeat:
+                    type: integer
+                    format: int32
+                typeSeatLabel:
+                    type: string
+                shopId:
+                    type: string
+                shopAreaId:
+                    type: string
+                shopAreaLabel:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                mapPosition:
+                    type: string
+                booking:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.Booking'
+                locking:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.seat.v1.Locking'
+        api.shop.v1.Data:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                telephone:
+                    type: string
+                wechat:
+                    type: string
+                email:
+                    type: string
+                province:
+                    type: string
+                city:
+                    type: string
+                district:
+                    type: string
+                address:
+                    type: string
+                longitude:
+                    type: string
+                latitude:
+                    type: string
+                leaderId:
+                    type: string
+                typeShop:
+                    type: integer
+                    format: int32
+                businessHours:
+                    type: string
+                sort:
+                    type: string
+                remark:
+                    type: string
+                seat:
+                    $ref: '#/components/schemas/api.shop.v1.Data_Seat'
+                setting:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.shop.v1.Data_Setting'
+        api.shop.v1.DataReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.shop.v1.Data'
+        api.shop.v1.Data_Seat:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                using:
+                    type: integer
+                    format: int32
+                shopAreaCount:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.shop.v1.Data_ShopAreaCount'
+        api.shop.v1.Data_Setting:
+            type: object
+            properties:
+                id:
+                    type: string
+                key:
+                    type: string
+                name:
+                    type: string
+                value:
+                    type: string
+                valueType:
+                    type: integer
+                    format: int32
+        api.shop.v1.Data_ShopAreaCount:
+            type: object
+            properties:
+                shopId:
+                    type: string
+                shopAreaId:
+                    type: string
+                total:
+                    type: integer
+                    format: int32
+        api.shop.v1.ListReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.shop.v1.Data'
+        api.shop.v1.QrCodeReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                msg:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.shop.v1.QrCodeReply_Data'
+        api.shop.v1.QrCodeReply_Data:
+            type: object
+            properties:
+                qrCodePath:
+                    type: string
+        api.shop.v1.UploadQrCodeRequest:
+            type: object
+            properties:
+                shopId:
+                    type: string
+                qrCodeBase64:
+                    type: string
+tags:
+    - name: Auth
+    - name: Config
+    - name: Coupon
+    - name: Course
+    - name: Dianping
+    - name: Equipment
+    - name: Member
+    - name: Order
+    - name: PackageCard
+    - name: Payment
+    - name: Seat
+    - name: Shop

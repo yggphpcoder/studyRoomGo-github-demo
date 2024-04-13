@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+package api.coupon.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/coupon/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.coupon.v1";
+
+service Coupon {
+  rpc CouponCenter (CouponListRequest) returns (CouponListReply){
+    option (google.api.http) = {
+      get: "/coupon/v1/coupon_center",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "我的优惠券";
+      summary: "我的优惠券";
+    };
+  };
+  rpc ReceiveCoupon (ReceiveCouponRequest) returns (ReceiveCouponReply){
+    option (google.api.http) = {
+      get: "/coupon/v1/receive_coupon",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "领取优惠券";
+      summary: "领取优惠券";
+    };
+  };
+  rpc MyCoupon (CouponListRequest) returns (CouponListReply){
+    option (google.api.http) = {
+      get: "/coupon/v1/my_coupon",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "我的优惠券";
+      summary: "我的优惠券";
+    };
+  };
+  rpc UseCouponValidate (CouponUseRequest) returns (CouponUseValidateReply){
+    option (google.api.http) = {
+      post: "/coupon/v1/use_coupon_validate",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "使用优惠券校验";
+      summary: "使用优惠券校验";
+    };
+  };
+}
+
+message CouponListRequest {
+  int32 notUsed=1;
+  int32 page=2;
+  int32 pageSize=3;
+}
+
+message ReceiveCouponRequest {
+  string couponCode = 1;
+  string notice = 3;
+}
+
+message ReceiveCouponReply{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message CouponListReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated CouponData data = 3;
+}
+
+
+message CouponData{
+  string code = 1;
+  int64 memberId=3;
+  string name=4;
+  string description=5;
+  int32 discountType=6;
+  int32 discountValue=7;
+  string discountRule=8;
+  int32 maxDiscount=9;
+  string startDate=10;
+  string endDate=111;
+  int32 status=11;
+  int32 isUsed=12;
+  int32 validDay=112;                         
+  int32 usageLimitPerUser=13;
+  string applicableShop=14;
+  string applicableSeat=15;
+  string applicableSeatType=16;
+  string applicablePackageCard=17;
+  string applicablePackageCardLabel=18;
+  string applicablePackageCardType=19;
+  string applicablePackageCardTypeLabel=20;
+  string applicableShopLabel=21;
+  int32 giftCardPercent=22;
+  string giftPackageCard=23;
+  string giftPackageCardLabel=24;
+
+}
+
+message CouponUseRequest{
+  int64 orderType=1;
+  int64 cardId = 2;
+  string couponCode=3;
+  int32 qty=4;
+}
+message CouponUseValidateReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data{
+    bool isValid = 1;
+    int32 invalidCode = 2;
+    string reason = 3;
+    repeated Coupon coupon = 4;
+  }
+
+  message Coupon {
+    string code = 1;
+    bool isValid = 2;
+    int32 invalidCode = 3;
+    string reason = 4;
+  }
+}

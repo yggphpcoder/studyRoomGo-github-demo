@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package api.order.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/order/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.order.v1";
+
+service Order {
+  rpc CalOrderTotalPrice (BuyCardOrderRequest) returns (BuyCardOrderReply){
+    option (google.api.http) = {
+      post: "/order/v1/cal_order_total_price",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "计算订单总额";
+      summary: "计算订单总额";
+    };
+  };
+}
+
+
+message BuyCardOrderRequest{
+  int64 cardId = 1;
+  string couponCode=2;
+  int32 qty=3;
+}
+
+message BuyCardOrderReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data=3;
+  message Data{
+    string order_no=1;
+    string totalPrice=2;
+  }
+}

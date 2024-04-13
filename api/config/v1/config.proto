@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package api.config.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/config/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.config.v1";
+
+service Config {
+  //  rpc Create (CreateRequest) returns (CreateReply);
+  //  rpc Update (UpdateRequest) returns (UpdateReply);
+  //  rpc Delete (DeleteRequest) returns (DeleteReply);
+  rpc GetDict (GetRequest) returns (DataDictReply){
+    option (google.api.http) = {
+      get: "/config/v1/dict/detail/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据id获取";
+      summary: "获取字典数据";
+    };
+  };
+  rpc FindDict (FindRequest) returns (DataDictReply){
+    option (google.api.http) = {
+      get: "/config/v1/dict/find"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段-值获取";
+      summary: "自定义获取字典数据";
+    };
+  };
+  rpc ListDict (ListRequest) returns (ListDictReply){
+    option (google.api.http) = {
+      get: "/config/v1/dict/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "获取全部";
+      summary: "获取字典数据列表";
+    };
+  };
+  rpc SearchDict (SearchDictRequest) returns (ListDictReply){
+    option (google.api.http) = {
+      get: "/config/v1/dict/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段搜索";
+      summary: "搜索字典数据列表";
+    };
+  };
+  rpc SearchEdDict (SearchDictRequest) returns (ListDictReply){
+    option (google.api.http) = {
+      get: "/config/v1/ed-dict/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段搜索";
+      summary: "搜索字典数据列表";
+    };
+  };
+  rpc SearchSetting (SearchSettingRequest) returns (ListSettingReply){
+    option (google.api.http) = {
+      get: "/config/v1/setting/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段搜索";
+      summary: "搜索配置数据列表";
+    };
+  };
+}
+
+message CreateRequest {}
+message CreateReply {}
+
+message UpdateRequest {}
+message UpdateReply {}
+
+message DeleteRequest {}
+message DeleteReply {}
+
+message GetRequest {
+  int64 id = 1;
+}
+
+message FindRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message ListRequest {}
+
+
+message SearchDictRequest {
+  string   type = 1[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description:"",example:"",default:""}];
+}
+
+message DataDictReply{
+  int32 code = 1;
+  string msg = 2;
+  DataDict data = 3;
+}
+message ListDictReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated DataDict data = 3;
+}
+message DataDict{
+  int64 id = 1;
+  int64  dict_sort = 2;
+  string dict_label = 3;
+  string dict_value = 4;
+  string dict_type = 5;
+
+
+}
+
+
+
+message SearchSettingRequest {
+  int64   shopId = 1;
+  int64   merchantId = 2;
+  string group=3;
+  string key=4;
+}
+
+message DataSettingReply{
+  int32 code = 1;
+  string msg = 2;
+  DataSetting data = 3;
+}
+message ListSettingReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated DataSetting data = 3;
+}
+message DataSetting{
+  int64 id = 1;
+  string  name = 2;
+  string key = 3;
+  int32 value_type=4;
+  string value = 5;
+}

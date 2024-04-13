@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package api.dianping.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/dianping/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.dianping.v1";
+
+service Dianping {
+  rpc prepare(prepareRequest) returns (DataReply) {
+    option (google.api.http) = {
+      post : "/dianping/v1/prepare"
+      body : "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description : "输码验券校验接口";
+  summary:
+    "输码验券校验";
+  };
+};
+rpc scanPrepare(prepareRequest) returns (DataReply) {
+  option (google.api.http) = {
+    post : "/dianping/v1/scanprepare"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "扫码验券校验接口";
+summary:
+  "扫码验券校验";
+};
+}
+rpc accessToken(prepareRequest) returns (DataReply) {
+  option (google.api.http) = {
+    post : "/dianping/v1/accessToken"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description : "获取accessToken接口";
+summary:
+  "获取accessToken接口";
+};
+}
+}
+//    kratos proto server api/dianping/v1/dianping.proto -t internal/service
+
+message prepareRequest {
+  string receipt_code = 1;
+  string qr_code = 2;
+  int64 shop_id = 3;
+}
+message DataReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+
+message Data {}

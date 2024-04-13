@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+package api.payment.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/payment/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.payment.v1";
+
+service Payment {
+  rpc WxPayCheckout (WxCheckoutRequest) returns (WxCheckoutReply){
+    option (google.api.http) = {
+      post: "/payment/v1/wxpay_checkout"
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "微信支付发起";
+      summary: "微信支付发起";
+    };
+  };
+  rpc WxPayCheckoutReturn (WxCheckoutReturnRequest) returns (WxCheckoutReturnReply){
+    option (google.api.http) = {
+      post: "/payment/v1/wxpay_checkout_return"
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "微信支付回应";
+      summary: "微信支付回应";
+    };
+  };
+  rpc WxPayNotice (WxNoticeRequest) returns (WxNoticeReply){
+    option (google.api.http) = {
+      post: "/payment/v1/{merchant_sign}/wxpay_notice"
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "微信支付通知回调";
+      summary: "微信支付通知回调";
+    };
+  };
+  rpc WxPayCheckoutBuyCard (WxCheckoutBuyCardRequest) returns (WxCheckoutReply){
+    option (google.api.http) = {
+      post: "/payment/v1/wxpay_checkout_buy_card"
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "购买套餐卡-微信支付发起";
+      summary: "购买套餐卡-微信支付发起";
+    };
+  };
+  rpc WxPayCheckoutBuyCourse (WxCheckoutBuyCourseRequest) returns (WxCheckoutReply){
+    option (google.api.http) = {
+      post: "/payment/v1/wxpay_checkout_buy_course"
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "购买课程-微信支付发起";
+      summary: "购买课程-微信支付发起";
+    };
+  };
+}
+message WxCheckoutRequest{
+   string order_no=1;
+}
+
+message WxCheckoutBuyCardRequest{
+  int64 cardId = 1;
+  string couponCode=2;
+  int32 qty=3;
+}
+message WxCheckoutBuyCourseRequest{
+  int64 saleId = 1;
+  int64 studentId=2;
+  int64 courseId=3;
+  int32 qty=4;
+}
+message WxCheckoutReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data=3;
+  message Data{
+    string orderNo=1;
+    string timeStamp=2;
+    string nonceStr=3;
+    string package=4;
+    string signType=5;
+    string paySign=6;
+  }
+}
+
+message WxCheckoutReturnRequest{
+  string order_no=1;
+  int32 status=2;
+}
+
+message WxCheckoutReturnReply{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message WxNoticeRequest{
+
+  string sp_mchid = 1;
+  string sp_appid = 2;
+  string sub_mchid = 3;
+  string sub_appid = 4;
+  string transaction_id = 5;
+  string out_trade_no = 6;
+  string trade_type = 7;
+  string trade_state = 8;        
+  string trade_state_desc = 9;
+  string bank_type = 10;
+  string success_time = 11;
+  Payer payer=12;
+  Amount amount=13;
+  string merchant_sign=14;
+  message Payer {
+    string openid=1;
+    string sp_openid=2;
+    string sub_openid=3;
+  }
+  message Amount{
+    int32 total=1;
+    int32 payer_total=2;
+    string currency=3;
+    string payer_currency=4;
+  }
+}
+message WxNoticeReply{
+  string code = 1;
+  string message = 2;
+}

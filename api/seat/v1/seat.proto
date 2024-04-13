@@ -1,0 +1,397 @@
+syntax = "proto3";
+
+package api.seat.v1;
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "studyRoomGo/api/seat/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.seat.v1";
+
+service Seat {
+  rpc Create (CreateRequest) returns (CreateReply);
+  rpc Update (UpdateRequest) returns (UpdateReply);
+  rpc Delete (DeleteRequest) returns (DeleteReply);
+  rpc Get (GetRequest) returns (DataReply){
+    option (google.api.http) = {
+      get: "/seat/v1/seat/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据id获取";
+      summary: "获取座位";
+    };
+  };
+  rpc Find (FindRequest) returns (DataReply){
+    option (google.api.http) = {
+      get: "/seat/v1/find"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段-值获取";
+      summary: "自定义获取座位";
+    };
+  };
+  rpc List (ListRequest) returns (ListReply){
+    option (google.api.http) = {
+      get: "/seat/v1/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "获取全部";
+      summary: "获取座位列表";
+    };
+  };
+  rpc Search (SearchRequest) returns (ListReply){
+    option (google.api.http) = {
+      get: "/seat/v1/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "根据字段搜索";
+      summary: "搜索座位列表";
+    };
+  };
+  rpc Overview (OverviewRequest) returns (OverviewReply){
+    option (google.api.http) = {
+      get: "/seat/v1/overview"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "订座座位预览";
+      summary: "订座座位预览";
+    };
+  };
+  rpc BookingValidate (BookingRequest) returns (BookingValidateReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_validate",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "订座校验";
+      summary: "订座校验";
+    };
+  };
+  rpc Booking (BookingRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "订座";
+      summary: "订座";
+    };
+  };
+  rpc BookingChangeSeat(BookingChangeSeatRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_change_seat",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "换座";
+      summary: "换座";
+    };
+  };
+  rpc BookingAddTime(BookingAddTimeRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_add_time",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "延长订座时间";
+      summary: "延长订座时间";
+    };
+  };
+  rpc BookingChangeStatus(BookingChangeStatusRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_change_status",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "更改订座状态；取消，入座，结束";
+      summary: "更改订座状态";
+    };
+  };
+  rpc BookingOpenDoor(BookingOpenDoorRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_open_door",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "开门";
+      summary: "开门";
+    };
+  };
+  rpc BookingControlLight(BookingControlSeatRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_control_light",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "开关灯";
+      summary: "开关灯";
+    };
+  };
+  rpc BookingShareGenToken(BookingControlSeatRequest) returns (BookingGenSharekDataReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_share_gen_token",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "创建订座分享码";
+      summary: "创建订座分享码";
+    };
+  };
+  rpc BookingOpenDoorShared(BookingOpenDoorRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_open_door_shared",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "共享开门";
+      summary: "共享开门";
+    };
+  };
+  rpc BookingControlLightShared(BookingControlSeatRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/booking_control_light_shared",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "共享开关灯";
+      summary: "共享开关灯";
+    };
+  };
+  rpc LockingOpenDoor(LockingOpenDoorRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/locking_open_door",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "锁位，开门";
+      summary: "锁位，开门";
+    };
+  };
+  rpc LockingControlLight(LockingControlSeatRequest) returns (BookingReply){
+    option (google.api.http) = {
+      post: "/seat/v1/locking_control_light",
+      body:"*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "锁位，开关灯";
+      summary: "锁位，开关灯";
+    };
+  };
+}
+
+message CreateRequest {}
+message CreateReply {}
+
+message UpdateRequest {}
+message UpdateReply {}
+
+message DeleteRequest {}
+message DeleteReply {}
+
+message GetRequest {
+  int64 id = 1;
+}
+
+message FindRequest {
+  string key = 1;
+  string value = 2;
+  string gteDateEnd = 3;
+  string lteDateEnd = 4;
+}
+
+message ListRequest {}
+
+
+message SearchRequest {
+  string name = 1[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description:"",example:"",default:""}];
+  int64  pid = 2;
+  int32  typeSeat = 3;
+  int64  shopId = 4;
+  int64  shopAreaId = 5;
+  int32  status = 6;
+  int32  sort = 7;
+}
+message DataReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+message ListReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated Data data = 3;
+}
+message Data{
+  int64  id = 1;
+  int64  pid = 2;
+  string name = 3;
+  int32  typeSeat = 4;
+  string  typeSeatLabel = 5;
+  int64  shopId = 6;
+  int64  shopAreaId = 7;
+  string  shopAreaLabel = 8;
+  int32  status = 9;
+  int32  sort = 10;
+  string remark = 11;
+  string map_position = 12;
+  repeated Booking booking = 13;
+  repeated Locking locking = 14;
+}
+//    kratos proto server api/seat/v1/seat.proto -t internal/service
+
+
+message OverviewRequest {
+  int64  shopId = 1;
+  string gteDateEnd = 2;
+  string lteDateEnd = 3;
+  string lteDateStart = 4;
+  string gteDateStart = 5;
+}
+message OverviewReply{
+  int32 code = 1;
+  string msg = 2;
+  repeated Data data = 3;
+
+  message Data{
+    int64  id = 1;
+    int64  pid = 2;
+    string name = 3;
+    int32  typeSeat = 4;
+    string  typeSeatLabel = 5;
+    int64  shopId = 6;
+    int64  shopAreaId = 7;
+    string  shopAreaLabel = 8;
+    int32  status = 9;
+    int32  sort = 10;
+    string remark = 11;
+    string map_position = 12;
+    repeated Booking booking = 13;
+    repeated Locking locking = 15;
+  }
+}
+//message TodayCanBook{
+//  string bookingStart = 1;
+//  string bookingEnd = 2;
+//  int64 maxBookMinute = 3;
+//}
+
+message Booking{
+  int64 id=1;
+  int64 memberId = 2;
+  int32 bookingType = 3;
+  int32 bookingDay = 4;
+  int32 bookingMinute = 5;
+  string bookingStartDay = 6;       
+  string bookingEndDay = 7;
+  string bookingStart = 8;
+  string bookingEnd = 9;
+  int32  status = 10;
+}
+
+message Locking{
+  int64 memberId = 1;
+  string lockingStartDay = 2;
+  string lockingEndDay = 3;
+  string lockingStart = 4;
+  string lockingEnd = 5;
+  string useTime=6;
+  int32  status = 7;
+}
+
+
+message BookingRequest {
+  int64 seatId = 1;
+  int64 memberPackageCardId = 2;
+  int64 merchantId=3;
+  int64 shopId = 4;
+  int32 bookingType = 5;
+  string bookingStartDay = 6;
+  string bookingEndDay = 7;
+  string bookingStart = 8;
+  string bookingEnd = 9;
+  bool  bookingToCloseTime=10;
+  int32  bookingHours=11;
+  int32  noEnoughUse=12;
+  string receiptCode=13;
+  int32 useRemain=14;
+  bool  bookingToUseEndTime=15;
+  int32  bookingMinute=16;
+  repeated int32  bookingWeek=17;
+
+
+}
+
+message BookingChangeSeatRequest {
+  int64 bookId = 1;
+  int64 changeSeatId = 2;
+}
+message BookingAddTimeRequest {
+  int64 bookId = 1;
+  bool  bookingToCloseTime=2;
+  int32  bookingMin=3;
+}
+
+message BookingChangeStatusRequest {
+  int64 bookId = 1;
+  int32 changeStatus = 2;
+}
+
+message BookingOpenDoorRequest {
+  int64 bookId = 1;
+  int64 door = 2;
+  string token =3;
+  string openId=4;
+
+}
+
+message BookingControlSeatRequest {
+  int64 bookId = 1;
+  string token =2;
+  string openId=3;
+
+}
+
+message BookingReply{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message BookingValidateReply{
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data{
+    bool isValid = 1;
+    int32 invalidCode = 2;
+    string reason = 3;
+    repeated PackageCard packageCard = 4;
+  }
+
+  message PackageCard {
+    int64 id = 1;
+    bool isValid = 2;
+    int32 invalidCode = 3;
+    string reason = 4;
+    int32 bookingMinute = 5;
+    int32 bookingDay = 6;
+  }
+}
+
+message BookingGenSharekDataReply {
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data{
+    string token = 1;
+  }
+}
+
+
+message LockingOpenDoorRequest {
+  int64 lockId = 1;
+  int64 door = 2;
+}
+
+message LockingControlSeatRequest {
+  int64 lockId = 1;
+}
