@@ -25,6 +25,11 @@
 9. 课程预约 课程管理，排课管理等功能
 10. 其他个性化功能（欢迎咨询）
 
+![示例图片](https://www.fish-study.com/static/1451712848164_.pic.jpg)
+![示例图片](https://www.fish-study.com/static/1431712848163_.pic.jpeg)
+![示例图片](https://www.fish-study.com/static/1441712848164_.pic.jpg)
+![示例图片](https://www.fish-study.com/static/1713003387612.png)
+
 ## 其他
 
 这个系统目前用在自习室，茶室的无人化自助订座入座；如果对于开自习室或者一些无人值守自动化的店铺有兴趣的同学，也欢迎咨询交流
